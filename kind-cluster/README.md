@@ -22,7 +22,7 @@ Create the cluster using the configuration file:
 
 ```bash
 
-kind create cluster --config kind-config.yaml --name tws-kind-cluster
+kind create cluster --config kind-config.yaml --name kind-cluster
 ```
 Verify the cluster:
 
@@ -104,7 +104,7 @@ Use the token from the previous step to log in.
 Delete the KIND cluster:
 ```bash
 
-kind delete cluster --name my-kind-cluster
+kind delete cluster --name kind-cluster
 ```
 
 ## 6. Notes
