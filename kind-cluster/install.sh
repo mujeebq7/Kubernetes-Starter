@@ -10,8 +10,8 @@ echo "🚀 Starting installation of Docker, Kind, and kubectl..."
 # ----------------------------
 if ! command -v docker &>/dev/null; then
   echo "📦 Installing Docker..."
-  sudo apt-get update -y
-  sudo apt-get install -y docker.io
+  sudo yum update -y
+  sudo yum install -y docker
 
   echo "👤 Adding current user to docker group..."
   sudo usermod -aG docker "$USER"
