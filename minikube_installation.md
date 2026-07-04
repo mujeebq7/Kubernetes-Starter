@@ -1,10 +1,10 @@
-# Minikube Installation Guide for CentOS/Rocky/Amazon Linux
+# Minikube Installation Guide for Amazon Linux/CentOS/Rocky Linux
 
 This guide provides step-by-step instructions for installing Minikube on Amazon Linux. Minikube allows you to run a single-node Kubernetes cluster locally for development and testing purposes.
 
 ## Pre-requisites
 
-* Amazon Linux
+* Amazon Linux/CentOS/Rocky Linux
 * sudo privileges
 * Internet access
 * Virtualization support enabled (Check with `egrep -c '(vmx|svm)' /proc/cpuinfo`, 0=disabled 1=enabled) 
@@ -16,21 +16,16 @@ This guide provides step-by-step instructions for installing Minikube on Amazon 
 Update your package lists to make sure you are getting the latest version and dependencies.
 
 ```bash
-sudo apt update
+sudo yum update
 ```
-
-<kbd>![image](https://github.com/paragpallavsingh/kubernetes-kickstarter/assets/40052830/57f1c5d9-474a-43b8-90b9-fe542e122f3f)</kbd>
-
 
 ## Step 2: Install Required Packages
 
 Install some basic required packages.
 
 ```bash
-sudo apt install -y curl wget apt-transport-https
+sudo yum install -y curl wget
 ```
-
-<kbd>![image](https://github.com/paragpallavsingh/kubernetes-kickstarter/assets/40052830/84ad8474-8d4d-4d4b-a04d-def88f76dc9a)</kbd>
 
 ---
 
@@ -39,11 +34,8 @@ sudo apt install -y curl wget apt-transport-https
 Minikube can run a Kubernetes cluster either in a VM or locally via Docker. This guide demonstrates the Docker method.
 
 ```bash
-sudo apt install -y docker.io
+sudo yum install -y docker
 ```
-<kbd>![image](https://github.com/paragpallavsingh/kubernetes-kickstarter/assets/40052830/d261f75b-a22f-4510-b3a3-14e1cecaf3e1)</kbd>
-
-
 Start and enable Docker.
 
 ```bash
@@ -55,7 +47,6 @@ Add current user to docker group (To use docker without root)
 ```bash
 sudo usermod -aG docker $USER && newgrp docker
 ```
-Now, logout (use `exit` command) and connect again.
 
 ---
 
@@ -73,9 +64,6 @@ Make it executable and move it into your path:
 chmod +x minikube
 sudo mv minikube /usr/local/bin/
 ```
-
-<kbd>![image](https://github.com/paragpallavsingh/kubernetes-kickstarter/assets/40052830/80e8a137-286a-4334-886b-ea4821f596b2)</kbd>
-
 ---
 
 ## Step 5: Install kubectl
@@ -92,7 +80,6 @@ Make it executable and move it into your path:
 chmod +x kubectl
 sudo mv kubectl /usr/local/bin/
 ```
-<kbd>![image](https://github.com/paragpallavsingh/kubernetes-kickstarter/assets/40052830/cdda6c84-f6c9-4d05-87e0-ed8627e46a3a)</kbd>
 
 ---
 
@@ -115,8 +102,6 @@ Check the cluster status with:
 ```bash
 minikube status
 ```
-
-<kbd>![image](https://github.com/paragpallavsingh/kubernetes-kickstarter/assets/40052830/a2dabec8-b073-4e1e-a831-dd6845000230)</kbd>
 
 
 You can also use `kubectl` to interact with your cluster:
@@ -145,7 +130,5 @@ If you wish to delete the Minikube cluster entirely, you can do so with:
 minikube delete
 ```
 
----
+That's it! You've successfully installed Minikube on Amazon Linux and you can now start deploying Kubernetes applications for development and testing.
 
-That's it! You've successfully installed Minikube on Ubuntu, and you can now start deploying Kubernetes applications for development and testing.
-```
