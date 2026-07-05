@@ -25,7 +25,7 @@
 - You will see 1 manifest file in the same directory (DaemonSet) with name daemonset-deploy.yaml.
 - Copy the content of the manifest and run the following command to deploy it.
 ```bash
-kubectl apply -f daemonset-deploy.yaml
+kubectl apply -f daemonset-deployment.yml
 ```
 - After applying, you will see the daemonset pods are created and replicas are equal to the number of nodes including control-plane.
 <img width="2990" height="636" alt="image" src="https://github.com/user-attachments/assets/d8770d48-4fdc-417a-b7f0-66cecfa341f1" />
