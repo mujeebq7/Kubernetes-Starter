@@ -6,13 +6,11 @@ metadata:
 spec:
   completions: 1
   parallelism: 1
-
   template:
     metadata:
       name: demo-job-pod
       labels:
         app: demo-job
-
     spec:
       containers:
       - name: demo-job
