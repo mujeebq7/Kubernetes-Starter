@@ -1,0 +1,19 @@
+kind: CronJob
+apiVersion: batch/v1
+metadata:
+  name: demo-job
+  namespace: nginx
+spec:
+  completions: 1
+  parallelism: 1
+  template:
+    metadata:
+      name: demo-job-pod
+      labels:
+        app: demo-job
+    spec:
+      containers:
+      - name: demo-job
+        image: busybox:latest
+        command: ["/bin/sh", "-c", "echo Hello World! && sleep 5"]
+      restartPolicy: never
