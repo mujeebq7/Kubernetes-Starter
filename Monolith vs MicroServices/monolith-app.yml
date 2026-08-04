@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: monolith-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: monolith
+  template:
+    metadata:
+      labels:
+        app: monolith
+    spec:
+      containers:
+      - name: main-app
+        image: my-monolith:v1.0
+        ports:
+        - containerPort: 8080
