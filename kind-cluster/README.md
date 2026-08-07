@@ -4,25 +4,31 @@
 Install KIND and kubectl using the provided [script](https://github.com/mujeebq7/Kubernetes-Starter/blob/main/kind-cluster/install.sh):
 
 ## 2. Setting Up the KIND Cluster
-Create a kind-config.yaml file:
+Create a kind-config.yml file:
 
 ```yaml
 
 kind: Cluster
 apiVersion: kind.x-k8s.io/v1alpha4
+name: test-cluster
+
 nodes:
-  - role: control-plane
-    image: kindest/node:v1.35.1
-  - role: worker
-    image: kindest/node:v1.35.1
-  - role: worker
-    image: kindest/node:v1.35.1
+- role: control-plane
+  image: kindest/node:v1.35.0
+  extraPortMappings:
+    - containerPort: 30080
+      hostPort: 8080
+      protocol: TCP
+- role: worker
+  image: kindest/node:v1.35.0
+- role: worker
+  image: kindest/node:v1.35.0
 ```
 Create the cluster using the configuration file:
 
 ```bash
 
-kind create cluster --config kind-config.yaml --name kind-cluster
+kind create cluster --config kind-config.yml
 ```
 Verify the cluster:
 
