@@ -47,7 +47,7 @@ Verify:
 kubectl get job -n nginx
 ```
 ```bash
-kubectl get pod -n nginx
+kubectl get pods -n nginx
 ```
 You can also verify the logs for the pod to check if the logs displayed the command you ran
 ```bash
@@ -56,4 +56,54 @@ kubectl logs pod/pod_name -n nginx
 Expeced output:
 ```bash
 Hello World!
+```
+---
+Let's create a sample CronJob
+
+```bash
+vim cronjob.yml
+```
+
+Copy this manifest file in cronjob.yml
+```bash
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: hello
+  namespace: nginx
+spec:
+  schedule: "* * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: hello
+            image: busybox:1.28
+            imagePullPolicy: IfNotPresent
+            command:
+            - /bin/sh
+            - -c
+            - date; echo Hello from the Kubernetes cluster
+          restartPolicy: OnFailure
+```
+Once done, apply the manifest file
+```bash
+kubectl apply -f cronjob.yml
+```
+Verify:
+```bash
+kubectl get cronjob -n nginx
+```
+```bash
+kubectl get pods -n nginx
+```
+You can also verify the logs for the pod to check if the logs displayed the command you ran
+```bash
+kubectl logs pod/pod_name -n nginx
+```
+Expeced output:
+```bash
+Sat Aug  8 11:54:00 UTC 2026
+Hello from the Kubernetes cluster
 ```
