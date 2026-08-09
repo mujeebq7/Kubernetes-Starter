@@ -145,4 +145,31 @@ Verify:
 ```bash
 kubectl get pods -n nginx
 ```
+---
+If you want to verify if the data is persistent from the pod to the host machine
 
+Check on which worker node is your pod running
+```bash
+kubectl get pods -n nginx -o wide
+```
+In this example, the pod is running on test-cluster-worker
+```bash
+NAME        READY   STATUS    RESTARTS   AGE   IP            NODE                  NOMINATED NODE   READINESS GATES
+nginx-pod   1/1     Running   0          13s   10.244.1.14   test-cluster-worker   <none>           <none>
+```
+Get the container ID of the test-cluster-worker
+```bash
+docker ps
+```
+You will see something similar
+```bash
+CONTAINER ID   IMAGE                                 COMMAND                  CREATED        STATUS        PORTS                                                                                                          NAMES
+409c56d807a9   kindest/node:v1.35.0                  "/usr/local/bin/entr…"   46 hours ago   Up 46 hours                                                                                                                  test-cluster-worker
+6f2d34a890cb   kindest/node:v1.35.0                  "/usr/local/bin/entr…"   46 hours ago   Up 46 hours                                                                                                                  test-cluster-worker2
+5560c9c7cbd6   kindest/node:v1.35.0                  "/usr/local/bin/entr…"   46 hours ago   Up 46 hours   127.0.0.1:46339->6443/tcp, 0.0.0.0:8080->30080/tcp                                                             test-cluster-control-plane
+```
+Get inside the container and verify if the mounted path exists
+```bash
+docker exec -it <container-id> bash
+```
+Once inside the container, verify if the mounted path exists and data is stored there.
