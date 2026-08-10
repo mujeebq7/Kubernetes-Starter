@@ -50,7 +50,7 @@ ingress-nginx-controller             LoadBalancer   10.96.239.98   <pending>    
 ingress-nginx-controller-admission   ClusterIP      10.96.13.74    <none>        443/TCP                      4m21s
 ```
 ---
-We have provided the manifests file for Nginx, Apache and Ingress in the section, apply those manifests file.
+We have provided the manifests file for Nginx, Apache and Ingress in this section, apply those manifests file.
 ```bash
 kubectl apply -f nginx.yml
 ```
