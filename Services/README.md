@@ -11,7 +11,7 @@ There are different types of services
 
 **Load Balancer** : It is used when the service is in cloud
 
-**Headless Service** :
+**Headless Service** : It is a service used for internal use, not exposed to the outer world
 
 **External IP** : This service is used when you want to assign a specific IP address
 
