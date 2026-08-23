@@ -31,7 +31,6 @@ metadata:
   name: apache-service
 spec:
   selector:
-    labels:
       app: apache
   ports:
     - protocol: TCP
