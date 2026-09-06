@@ -150,7 +150,7 @@ kubectl run -i --tty load-generator --image=busybox /bin/sh
 ```
 Inside the container, use 'wget' to generate load:
 ```bash
-while true; do wget -q -O- http://apache-service.default.svc.cluster.local; done
+while true; do wget -q -O- http://apache-service.apache.svc.cluster.local; done
 ```
 
 This will generate continuous load on the Apache service, causing the HPA to scale up the number of pods.
